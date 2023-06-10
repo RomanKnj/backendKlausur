@@ -110,7 +110,7 @@ describe('DELETE /customers/:id', () => {
     it('sollte Statuscode 204 zurückgeben, falls der Kunde gelöscht wurde', async () => {
         const jsonData = 
         {
-            "id": "6484734b9b0b0c0aa2f95a3a",
+            "id": "6484732eaec28b9bdd493338",
             "firstName": "Loesch",
             "lastName": "Test",
             "email": "loesch.test@darkside.moon",
@@ -118,13 +118,13 @@ describe('DELETE /customers/:id', () => {
             "city": "Loeschstadt",
             "zip": "99999"
         }
+        await request(app).post('/customers').send(jsonData);
         
-        let customer = await request(app).post('/customers').send(jsonData);
         const responseDelete = await request(app).delete('/customers/' + jsonData.id);
+        expect(responseDelete.statusCode).toBe(204);
+        
         
         const responseGet = await request(app).get('/customers/' + jsonData.id);
-
-        expect(responseDelete.statusCode).toBe(204);
         expect(responseGet.statusCode).toBe(404);
     });
 });
