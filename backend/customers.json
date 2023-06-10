@@ -1,0 +1,24 @@
+[
+    {
+        "_id": {
+            "$oid": "647f1654be8df684218752bb"
+        },
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@skynet.org",
+        "street": "Schlossallee 1",
+        "city": "Entenhausen",
+        "zip": "12345"
+    },
+    {
+        "_id": {
+            "$oid": "647f16c04088d9a6028aaa0d"
+        },
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "jane.doe@darkside.moon",
+        "street": "Musterstraße 1",
+        "city": "Musterstadt",
+        "zip": "12345"
+    }
+]
