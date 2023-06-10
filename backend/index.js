@@ -336,7 +336,7 @@ app.put('/customers/:id', customerValidationRules, async (req, res) => {
     const errors = validationResult(req);
     if(!customer)
         res.sendStatus(404);
-    else if(!errors.isEmpty() || customer.id != req.body.id)
+    else if(!errors.isEmpty())
         res.sendStatus(400);
     else
     {

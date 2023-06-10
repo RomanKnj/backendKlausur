@@ -89,7 +89,7 @@ describe('POST /customers', () => {
 });
 
 describe('PUT /customers/:id', () => {
-    it('sollte Statuscode 200 zurückgeben, falls der Kunde erstellt wurde', async () => {
+    it('sollte Statuscode 200 zurückgeben, falls der Kunde aktualisiert wurde', async () => {
         const jsonData = 
         {
             "firstName": "Test 2",
@@ -97,9 +97,10 @@ describe('PUT /customers/:id', () => {
             "email": "Test.Testt@darkside.moon",
             "street": "Teststraße 2",
             "city": "Teststadt",
+            "zip": "12354"
         };
         
-        const response = await request(app).put('/customers/64846d029f13da3e27dd6585').send(jsonData);
+        const response = await request(app).put('/customers/647f16c04088d9a6028aaa0d').send(jsonData);
 
         expect(response.statusCode).toBe(200);
     });
@@ -109,7 +110,7 @@ describe('DELETE /customers/:id', () => {
     it('sollte Statuscode 204 zurückgeben, falls der Kunde gelöscht wurde', async () => {
         const jsonData = 
         {
-            "id": "64846f87da508f4046ed0a81",
+            "id": "6484734b9b0b0c0aa2f95a3a",
             "firstName": "Loesch",
             "lastName": "Test",
             "email": "loesch.test@darkside.moon",
@@ -119,11 +120,12 @@ describe('DELETE /customers/:id', () => {
         }
         
         let customer = await request(app).post('/customers').send(jsonData);
-        await request(app).delete('/customers/' + customer.id);
+        const responseDelete = await request(app).delete('/customers/' + jsonData.id);
         
-        const response = await request(app).get('/customers/' + customer.id);
+        const responseGet = await request(app).get('/customers/' + jsonData.id);
 
-        expect(response.statusCode).toBe(204);
+        expect(responseDelete.statusCode).toBe(204);
+        expect(responseGet.statusCode).toBe(404);
     });
 });
 

@@ -68,7 +68,10 @@ export default class DB {
      */
     insert(customer) {
         // TODO: Implement insert
-        customer._id = new ObjectId();
+        if(!customer.id)
+            customer._id = new ObjectId();
+        else
+            customer._id = new ObjectId(customer.id);
         this.collection.insertOne(customer);
     }
 }
